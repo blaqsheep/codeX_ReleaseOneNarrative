@@ -107,7 +107,7 @@
 		});
 
 		//console.log(productList)
-		// console.log(productList[productList.length-1]);
+		console.log(productList[productList.length-1]);
 		// console.log(productList[2])
 		return productList[productList.length-1];
 	};
@@ -149,14 +149,14 @@
 
 		console.log(Dairy);
 		console.log(Beverages);
-		console.log(Bakery);
+		// console.log(Bakery);
 		console.log(Fruit);
 		console.log(Sweets);
 		console.log(CannedFood);
 		console.log(Toileteries);
 		console.log(Starchfood);
 		console.log(Extras);
-		return Dairy;
+		// return Dairy;
 
 		
 	}
