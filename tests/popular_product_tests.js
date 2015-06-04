@@ -42,7 +42,7 @@ it('should return the least popular item', function(){
 it('should return a list with item categories', function(){
     var Products = require("../productsSold");
     var products = new Products('../Nelisa Sales History.csv');
-    var popularProduct = products.mostPopular();
+    var popularProduct = products.category();
     var category = products.category();
     var result = Dairy ;
 })
