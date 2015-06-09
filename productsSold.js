@@ -113,52 +113,76 @@
 	};
 
 
-	this.category = function(){
+	this.category = function(productMap){
 
-		var Dairy = [];
-		var Beverages = [];
-		var Fruit = [];
-		var	CannedFood = [];
-		var Starchfood = [];
-		var Toileteries = [];
-		var Bakery = [];
-		var Sweets = [];
-		var Extras = [];
+		  var catGroup = {
+		  	'Imasi': 'Dairy',
+		  	'Bread': 'Bakery',
+		  	'Chakalaka Can': 'Canned Food',
+		  	'Gold Dish Vegetable Curry Can': 'Canned Food',
+		  	'Fanta 500ml': 'Cold Beverages',
+		  	'Coke 500ml': 'Cold Beverages',
+		  	'Milk 1l' : 'Dairy',
+		  	'Cream Soda 500ml': 'Cold Beverages',
+		  	'Iwisa Pap 5kg': 'Bulk',
+		  	'Top Class Soy Mince': 'Soup',
+		  	'Shampoo 1 litre': 'Cosmetics',
+		  	'Soap Bar': 'Cosmetics',
+		  	'Bananas - loose': 'Fruit',
+		  	'Apples - loose': 'Fruit',
+		  	'Mixed Sweets 5s': 'Confectionery',
+		  	'Heart Chocolates': 'Confectionery',
+		  	'Rose (plastic)': 'Valentine Goodies',
+		  	'Valentine Cards': 'Valentine Goodies',
+		  };
 
-		var Categories =[];
-		var productList = createProductList(folderName);
+	var catMap = {}
 
-		if(productList.currentItem ='Milk' & 'Imasi')
-			Dairy.push(currentItem += Number(productList.numberSold));
-		else if(productList.currentItem = 'Coke 500ml'&'Fanta 500ml'&'Cream Soda 500ml')
-			Beverages.push(productList.currentItem += Number(productList.numberSold));
-		else if(productList.currentItem = 'Bread')
-			Bakery.push(productList.currentItem += Number(productList.numberSold));
-		else if(productList.currentItem = 'Apples - loose' & 'Bananas - loose')
-			Fruit.push(productList.currentItem += Number(productList.numberSold));
-		else if(productList.currentItem = 'Mixed Sweets 5s'& 'Heart Chocolates')
-			Sweets.push(productList.currentItem += Number(productList.numberSold));
-		else if(productList.currentItem = 'Chakalaka Can'& 'Gold Dish Vegetable Curry Can')
-			CannedFood.push(productList.currentItem += Number(productList.numberSold));
-		else if(productList.currentItem = 'Soap Bar' & 'Shampoo 1 litre')
-			Toileteries.push(productList.currentItem += Number(productList.numberSold));
-		else if(productList.currentItem = 'Iwisa Pap 5kg')
-			Starchfood.push(productList.currentItem += Number(productList.numberSold));
-		else if(productList.currentItem = 'Top Class Soy Mince' & 'Rose (plastic)' & 'Valentine Cards')
-			Extras.push(productList.currentItem += Number(productList.numberSold));
 
-		console.log(Dairy);
-		console.log(Beverages);
-		// console.log(Bakery);
-		console.log(Fruit);
-		console.log(Sweets);
-		console.log(CannedFood);
-		console.log(Toileteries);
-		console.log(Starchfood);
-		console.log(Extras);
-		// return Dairy;
+	for(var productName in productMap){
 
-		
+		var catName = catGroup[productName];
+		var qty = productMap[productName];
+
+		//console.log("==> " + productName + " : " + catName + " : " + qty);
+
+		// is the productName in the map?
+		if(catMap[catName] == undefined){
+			//if it is not in the map add it to the map...
+			catMap[catName] = 0;
+		}
+
+		// now add the qty for each product to the correct qty...
+		catMap[catName] = catMap[catName] + Number(qty);
 	}
 
+	// create a list of categories
+	var categoryList = [];
+        for(var key in catMap){		
+			var obj = {
+				currentItem : key,
+				numberSold: catMap[key]
+			};
+			categoryList.push(obj);
+		}
+	
+	//sort the list desc
+	categoryList.sort(function(a,b){
+			return b.numberSold-a.numberSold;
+	});
+
+	//creating an object literal to allow us to return two values
+	return {
+		mostPopularCat : categoryList[0],
+		leastPopularCat : categoryList[categoryList.length-1]
+	};
+
+	//return the first one
+	//return cat;
+		
+	};
+ 
+
 };
+
+
