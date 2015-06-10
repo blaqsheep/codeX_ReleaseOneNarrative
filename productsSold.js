@@ -113,6 +113,7 @@
 	};
 
 
+//code for gouping products into categories 
 	this.category = function(productMap){
 
 		  var catGroup = {
@@ -182,6 +183,40 @@
 		
 	};
  
+ //reading the Nelisa sales history csv file and splitting it into columns
+	this.earningPerPrdct = function(){
+		var linesInFile = fs.readFileSync(folderName, "utf8");
+		//productLines kubo
+		var splitLines = linesInFile.split('\r');
+
+		//skip the first line as it contains the column names
+		splitLines = splitLines.splice(1);
+
+		var	totalPrices = {};
+        splitLines.forEach(function(splitLine){
+
+				var productLines = splitLine.split(';');
+				if(productLines.length === 5){
+
+                 var currentItem = productLines[2];
+                 var numberSold = productLines[3];
+                 var price = productLines[4];
+
+                 var removeR = price.replace("R","");
+                 var removeComma = removeR.replace(",",".");
+
+                 	if(totalPrices[currentItem] === undefined){
+                 		totalPrices[currentItem] = 0;
+                			 }
+                    	totalPrices[currentItem] += Number(numberSold) * Number(removeComma);
+						}
+					});
+        			console.log(totalPrices);
+
+        return totalPrices;
+	};
+
+
 
 };
 

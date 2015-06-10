@@ -77,7 +77,6 @@ it('should return the most popular category and the least popular', function(){
           }
 
           var result = {currentItem: 'Cold Beverages', numberSold: 328};
-
           var categoryData = products.category(productMap);
           console.log(categoryData);
           assert.deepEqual(result, categoryData.mostPopularCat);
@@ -127,5 +126,38 @@ it('should return the least popular category', function(){
           assert.deepEqual(result, categoryData.leastPopularCat);
 
 })
+
+it('should return earnings per product', function(){
+  var Products = require("../productsSold");
+  var products = new Products('../Nelisa Sales History.csv');
+  var earningPerProduct = products.earningPerPrdct();
+
+
+    var result = {
+
+       'Milk 1l': 1420,
+        'Imasi': 3125,
+        'Bread': 1560,
+      'Chakalaka Can': 940,
+      'Gold Dish Vegetable Curry Can': 774,
+      'Fanta 500ml': 611,
+
+      'Coke 500ml': 1033.5,
+      'Cream Soda 500ml': 562.5,
+      'Iwisa Pap 5kg': 1410,
+      'Top Class Soy Mince': 1176,
+      'Shampoo 1 litre': 780,
+      'Soap Bar': 300,
+      'Bananas - loose': 228,
+      'Apples - loose': 228,
+      'Mixed Sweets 5s': 455,
+      'Heart Chocolates': 700,
+      'Rose (plastic)': 210,
+      'Valentine Cards': 56 
+
+        };
+
+  assert.deepEqual(result, earningPerProduct);
+ })
 
 });
