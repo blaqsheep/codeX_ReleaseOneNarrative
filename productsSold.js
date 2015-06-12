@@ -145,7 +145,7 @@
 		var catName = catGroup[productName];
 		var qty = productMap[productName];
 
-		//console.log("==> " + productName + " : " + catName + " : " + qty);
+		console.log("==> " + productName + " : " + catName + " : " + qty);
 
 		// is the productName in the map?
 		if(catMap[catName] == undefined){
@@ -186,7 +186,6 @@
  //reading the Nelisa sales history csv file and splitting it into columns
 	this.earningPerPrdct = function(){
 		var linesInFile = fs.readFileSync(folderName, "utf8");
-		//productLines kubo
 		var splitLines = linesInFile.split('\r');
 
 		//skip the first line as it contains the column names
@@ -194,6 +193,7 @@
 
 		var	totalPrices = {};
         splitLines.forEach(function(splitLine){
+
 
 				var productLines = splitLine.split(';');
 				if(productLines.length === 5){
@@ -216,7 +216,19 @@
         return totalPrices;
 	};
 
+	this.earningPerCat = function(totalPrices, catMap){
 
+			var earnings = {};
+
+			for(var product in totalPrices){
+				if(earnings[catMap[product]] === undefined){
+					earnings[catMap[product]] = 0;
+				}
+					earnings[catMap[product]] += totalPrices[product]
+			}
+			console.log(earnings);
+			return earnings;
+	}
 
 };
 
