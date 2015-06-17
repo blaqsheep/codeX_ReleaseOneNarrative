@@ -159,21 +159,32 @@ it('should return earnings per product', function(){
 it('should return earnings per category', function(){
   var Products = require("../productsSold");
   var products = new Products('../Nelisa Sales History.csv');
-  var earningPerCategory = products.earningPerCat();
+  var totalPrices = products.earningPerPrdct();
+  var earningPerCategory = products.earningPerCat(totalPrices);
 
   var result = {
-    'Dairy Products': 4545,
-    'Bakery': 1560,
-    'Bulk': 47,
-    'Confectionery': 192,
-    'Cosmectics': 76,
-    'Fruits': 228,
-    'Cold Beverages': 328,
-    'Canned Food': 180,
-    'Valentine Goodies': 28,
-    'Soup':98
+  'Dairy': 4545,
+   Bakery: 1560,
+  'Canned Food': 1714,
+  'Cold Beverages': 2207,
+   Bulk: 1410,
+   Soup: 1176,
+   Cosmetics: 1080,
+   Fruit: 456,
+   Confectionery: 1155,
+   'Valentine Goodies': 266 
+
   }
   assert.deepEqual(result, earningPerCategory);
     })
+
+it('should return the most profitable product', function(){
+  var Products = require("../productsSold");
+        var products = new Products('../Nelisa Sales History.csv');
+        var mostProfitablePrdct = products.earningPerPrdct();
+        var result = {'Imasi': 3125};
+        // did the right thing happen...?!
+        assert.deepEqual(mostProfitablePrdct, result)
+})
 
 });

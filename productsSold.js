@@ -145,7 +145,7 @@
 		var catName = catGroup[productName];
 		var qty = productMap[productName];
 
-		console.log("==> " + productName + " : " + catName + " : " + qty);
+		//console.log("==> " + productName + " : " + catName + " : " + qty);
 
 		// is the productName in the map?
 		if(catMap[catName] == undefined){
@@ -216,7 +216,28 @@
         return totalPrices;
 	};
 
-	this.earningPerCat = function(totalPrices, catMap){
+	this.earningPerCat = function(totalPrices){
+
+		 var catMap = {
+		  	'Imasi': 'Dairy',
+		  	'Bread': 'Bakery',
+		  	'Chakalaka Can': 'Canned Food',
+		  	'Gold Dish Vegetable Curry Can': 'Canned Food',
+		  	'Fanta 500ml': 'Cold Beverages',
+		  	'Coke 500ml': 'Cold Beverages',
+		  	'Milk 1l' : 'Dairy',
+		  	'Cream Soda 500ml': 'Cold Beverages',
+		  	'Iwisa Pap 5kg': 'Bulk',
+		  	'Top Class Soy Mince': 'Soup',
+		  	'Shampoo 1 litre': 'Cosmetics',
+		  	'Soap Bar': 'Cosmetics',
+		  	'Bananas - loose': 'Fruit',
+		  	'Apples - loose': 'Fruit',
+		  	'Mixed Sweets 5s': 'Confectionery',
+		  	'Heart Chocolates': 'Confectionery',
+		  	'Rose (plastic)': 'Valentine Goodies',
+		  	'Valentine Cards': 'Valentine Goodies',
+		  };
 
 			var earnings = {};
 
@@ -229,6 +250,22 @@
 			console.log(earnings);
 			return earnings;
 	}
+
+	this.mostProfitableProduct = function(totalPrices){
+
+		var totalPrices = createProductList(folderName);		
+
+		totalPrices.sort(function(a,b){
+			//return b.numberSold-a.numberSold;
+		});
+
+		//console.log(productList)
+		// console.log(productList.length);
+		console.log(totalPrices[0])
+		return totalPrices[0];
+	};
+
+
 
 };
 
