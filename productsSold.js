@@ -1,6 +1,7 @@
 	var fs = require('fs');
 
 	module.exports = function(folderName){
+
 		this.productNames = function(callback) {
 			var linesInFile = fs.readFileSync(folderName, "utf8"); 
 			var lines = linesInFile.split('\r');
@@ -60,16 +61,18 @@
 
 		productsList.forEach(function(productLine){
 
-				var hold = productLine.split(';');
+			var hold = productLine.split(';');
 
-				var currentItem = hold[2];
-				var numberSold =  hold[3];
+			var currentItem = hold[2];
+			var numberSold =  hold[3];
 
-				if(mostPopularMap[currentItem] === undefined){
-					mostPopularMap[currentItem] = 0;
-				}	
-					mostPopularMap[currentItem] += Number(numberSold);
-				});
+			if(mostPopularMap[currentItem] === undefined){
+				mostPopularMap[currentItem] = 0;
+			}	
+			mostPopularMap[currentItem] += Number(numberSold);
+
+		});
+
 		//return mostPopularMap;
 		for(var key in mostPopularMap){
 			var obj = {
@@ -81,7 +84,7 @@
 		}
 		// end
 		return productList;
-	}
+	} 
 
 
 	this.mostPopular = function(){
@@ -113,7 +116,7 @@
 	};
 
 
-//code for gouping products into categories 
+	//code for gouping products into categories 
 	this.category = function(productMap){
 
 		  var catGroup = {
@@ -202,7 +205,7 @@
                  var numberSold = productLines[3];
                  var price = productLines[4];
 
-                 var removeR = price.replace("R","");
+                 var removeR = price.substr(1);
                  var removeComma = removeR.replace(",",".");
 
                  	if(totalPrices[currentItem] === undefined){
@@ -211,8 +214,9 @@
                     	totalPrices[currentItem] += Number(numberSold) * Number(removeComma);
 						}
 					});
-        			console.log(totalPrices);
-
+        			//console.log(totalPrices);
+		
+		//console.log("============>>")
         return totalPrices;
 	};
 
@@ -248,23 +252,54 @@
 					earnings[catMap[product]] += totalPrices[product]
 			}
 			console.log(earnings);
+			console.log("============>>")
 			return earnings;
 	}
 
-	this.mostProfitableProduct = function(totalPrices){
 
-		var totalPrices = createProductList(folderName);		
+	/*this.mostProfitableProduct = function(totalPrices){
 
-		totalPrices.sort(function(a,b){
-			//return b.numberSold-a.numberSold;
-		});
+		//console.log(totalPrices);
 
-		//console.log(productList)
-		// console.log(productList.length);
-		console.log(totalPrices[0])
-		return totalPrices[0];
+		var highest = -1;
+		var p ;
+		for (k in totalPrices) {
+			if (totalPrices[k] > highest) {
+				highest = Number(totalPrices[k]);
+				p = k;
+			}
+		}
+console.log("======>>>>>")
+		console.log( p +":" + highest);
+		
+		var result = {};
+		result[p] = highest;
+		//
+		return result;
 	};
 
+this.mostProfitableCategory = function(catMap){
+
+		//console.log(catMap);
+
+		var max = -1;
+		var c ;
+		for (n in catMap) {
+			if (catMap[n] > max) {
+				max = Number(catMap[n]);
+				c = n;
+			}
+		}
+
+		//console.log( c +":" + max);
+		
+		var result = {};
+		result[c] = max;
+		//
+		//return result;
+	};*/
+
+	
 
 
 };

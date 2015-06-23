@@ -1,10 +1,10 @@
 var assert = require("assert");
-
+var Products = require("../productsSold");
 describe("Find data in file", function(){
 
     it('should return all products as they are in the csv file', function(done){
-        var Products = require("../productsSold");
-        var products = new Products('../Nelisa Sales History.csv');
+        
+        var products = new Products('./Nelisa Sales History.csv');
         products.productNames(function(err, product){
         assert.equal(449, product.length);
         //assert.equal("Imasi", product[2].itemName);
@@ -14,8 +14,8 @@ describe("Find data in file", function(){
     });
 
     it('should return grouped items', function(){
-        var Products = require("../productsSold");
-        var products = new Products('../Nelisa Sales History.csv');
+        //var Products = require("../productsSold");
+        var products = new Products('./Nelisa Sales History.csv');
         var groupedProducts = products.groupedItems();
         console.log(groupedProducts);
         assert.equal(125, groupedProducts["Imasi"]);
@@ -23,8 +23,8 @@ describe("Find data in file", function(){
     });
     
 it('should return most popular items', function(){
-        var Products = require("../productsSold");
-        var products = new Products('../Nelisa Sales History.csv');
+        //var Products = require("../productsSold");
+        var products = new Products('./Nelisa Sales History.csv');
         var popularProduct = products.mostPopular();
         var result = {currentItem : 'Mixed Sweets 5s', numberSold:172};
         // did the right thing happen...?!
@@ -32,16 +32,16 @@ it('should return most popular items', function(){
     });
 
 it('should return the least popular item', function(){
-    var Products = require("../productsSold");
-    var products = new Products('../Nelisa Sales History.csv');
+    //var Products = require("../productsSold");
+    var products = new Products('./Nelisa Sales History.csv');
     var leastPopular = products.leastPopular();
     var result = {currentItem: 'Valentine Cards', numberSold:14};
     assert.deepEqual(leastPopular, result)
     });
 
 it('should return the most popular category and the least popular', function(){
-    var Products = require("../productsSold");
-    var products = new Products('../Nelisa Sales History.csv');
+    //var Products = require("../productsSold");
+    var products = new Products('./Nelisa Sales History.csv');
 
     var  productMap = {
           'Milk 1l': 142,
@@ -84,8 +84,8 @@ it('should return the most popular category and the least popular', function(){
 })
 
 it('should return the least popular category', function(){
-    var Products = require("../productsSold");
-    var products = new Products('../Nelisa Sales History.csv');
+   // var Products = require("../productsSold");
+    var products = new Products('./Nelisa Sales History.csv');
 
     var  productMap = {
           'Milk 1l': 142,
@@ -128,8 +128,8 @@ it('should return the least popular category', function(){
 })
 
 it('should return earnings per product', function(){
-  var Products = require("../productsSold");
-  var products = new Products('../Nelisa Sales History.csv');
+  //var Products = require("../productsSold");
+  var products = new Products('./Nelisa Sales History.csv');
   var earningPerProduct = products.earningPerPrdct();
 
 
@@ -157,34 +157,50 @@ it('should return earnings per product', function(){
  })
 
 it('should return earnings per category', function(){
-  var Products = require("../productsSold");
-  var products = new Products('../Nelisa Sales History.csv');
+  //var Products = require("../productsSold");
+  var products = new Products('./Nelisa Sales History.csv');
   var totalPrices = products.earningPerPrdct();
   var earningPerCategory = products.earningPerCat(totalPrices);
 
   var result = {
   'Dairy': 4545,
-   Bakery: 1560,
+  'Bakery': 1560,
   'Canned Food': 1714,
   'Cold Beverages': 2207,
-   Bulk: 1410,
-   Soup: 1176,
-   Cosmetics: 1080,
-   Fruit: 456,
-   Confectionery: 1155,
-   'Valentine Goodies': 266 
+  'Bulk': 1410,
+  'Soup': 1176,
+  'Cosmetics': 1080,
+  'Fruit': 456,
+  'Confectionery': 1155,
+  'Valentine Goodies': 266, 
 
   }
   assert.deepEqual(result, earningPerCategory);
     })
 
-it('should return the most profitable product', function(){
-  var Products = require("../productsSold");
-        var products = new Products('../Nelisa Sales History.csv');
-        var mostProfitablePrdct = products.earningPerPrdct();
-        var result = {'Imasi': 3125};
+/*it('should return the most profitable product', function(){
+        //var Products = require("../productsSold");
+        var products = new Products('./NelisaPurchases.csv');
+        console.log("is this it?" + JSON.stringify(products))
+        //var dataInFile = fs.readFileSync(csvFile, 'utf8');
+        //var profitLines = dataInFile.split('\r');
+
+        //var earningPerPrdct = products.creatProfitList();
+
+        //var mostProfitablePrdct = products.creatProfitList(earningPerPrdct);
+        //var result = {"Imasi": 3125};
         // did the right thing happen...?!
-        assert.deepEqual(mostProfitablePrdct, result)
-})
+        //assert.deepEqual(mostProfitablePrdct, result)
+});
+
+it('should return the most profitable category', function(){
+        var Products = require("../productsSold");
+        var products = new Products('../Nelisa Sales History.csv');
+        var earnings = products.earningPerCat();
+        
+        var mostProfiCat = products.mostProfitableCategory(catMap);
+        var result = {"Dairy": 4545};
+        assert.deepEqual(mostProfiCat, result)
+});*/
 
 });
