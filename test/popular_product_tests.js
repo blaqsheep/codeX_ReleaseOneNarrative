@@ -17,7 +17,7 @@ describe("Find data in file", function(){
         //var Products = require("../productsSold");
         var products = new Products('./Nelisa Sales History.csv');
         var groupedProducts = products.groupedItems();
-        console.log(groupedProducts);
+        //console.log(groupedProducts);
         assert.equal(125, groupedProducts["Imasi"]);
        
     });
@@ -78,54 +78,12 @@ it('should return the most popular category and the least popular', function(){
 
           var result = {currentItem: 'Cold Beverages', numberSold: 328};
           var categoryData = products.category(productMap);
-          console.log(categoryData);
+          //console.log(categoryData);
           assert.deepEqual(result, categoryData.mostPopularCat);
 
 })
 
-it('should return the least popular category', function(){
-   // var Products = require("../productsSold");
-    var products = new Products('./Nelisa Sales History.csv');
 
-    var  productMap = {
-          'Milk 1l': 142,
-          'Imasi': 125,
-          'Bread': 130,
-          'Chakalaka Can': 94,
-          'Gold Dish Vegetable Curry Can': 86,
-          'Fanta 500ml': 94,
-          'Coke 500ml': 159,
-          'Cream Soda 500ml': 75,
-          'Iwisa Pap 5kg': 47,
-          'Top Class Soy Mince': 98,
-          'Shampoo 1 litre': 26,
-          'Soap Bar': 50,
-          'Bananas - loose': 114,
-          'Apples - loose': 114,
-          'Mixed Sweets 5s': 172,
-          'Heart Chocolates': 20,
-          'Rose (plastic)': 14,
-          'Valentine Cards': 14 };
-
-          var catMap = {
-            'Dairy Products': 267,
-            'Bakery': 130,
-            'Bulk': 47,
-            'Confectionery': 192,
-            'Cosmectics': 76,
-            'Fruits': 128,
-            'Cold Beverages': 328,
-            'Canned Food': 180,
-            'Valentines Goodies': 28,
-            'Soup': 98 
-          }
-       
-          var result = {currentItem: 'Valentine Goodies', numberSold: 28};
-          var categoryData = products.category(productMap);
-          console.log(categoryData);
-          assert.deepEqual(result, categoryData.leastPopularCat);
-
-})
 
 it('should return earnings per product', function(){
   //var Products = require("../productsSold");
@@ -177,30 +135,5 @@ it('should return earnings per category', function(){
   }
   assert.deepEqual(result, earningPerCategory);
     })
-
-/*it('should return the most profitable product', function(){
-        //var Products = require("../productsSold");
-        var products = new Products('./NelisaPurchases.csv');
-        console.log("is this it?" + JSON.stringify(products))
-        //var dataInFile = fs.readFileSync(csvFile, 'utf8');
-        //var profitLines = dataInFile.split('\r');
-
-        //var earningPerPrdct = products.creatProfitList();
-
-        //var mostProfitablePrdct = products.creatProfitList(earningPerPrdct);
-        //var result = {"Imasi": 3125};
-        // did the right thing happen...?!
-        //assert.deepEqual(mostProfitablePrdct, result)
-});
-
-it('should return the most profitable category', function(){
-        var Products = require("../productsSold");
-        var products = new Products('../Nelisa Sales History.csv');
-        var earnings = products.earningPerCat();
-        
-        var mostProfiCat = products.mostProfitableCategory(catMap);
-        var result = {"Dairy": 4545};
-        assert.deepEqual(mostProfiCat, result)
-});*/
 
 });

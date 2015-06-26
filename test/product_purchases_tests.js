@@ -1,6 +1,6 @@
 var assert = require("assert");
 var ProductsBought = require("../productsBought");
-describe("Find data in file", function(){
+describe("Give total purchase amounts", function(){
 
     it('should return grouped products purchases', function(){
         var products = new ProductsBought('./NelisaPurchases.csv');
@@ -12,7 +12,7 @@ describe("Find data in file", function(){
         assert.equal(18, Object.keys(productsBought).length);
 
         for(var product in productsBought){
-        	console.log(product)
+        	//console.log(product + product[5])
         }
 
 

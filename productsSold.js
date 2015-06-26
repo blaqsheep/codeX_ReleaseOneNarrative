@@ -214,9 +214,9 @@
                     	totalPrices[currentItem] += Number(numberSold) * Number(removeComma);
 						}
 					});
-        			//console.log(totalPrices);
+        			console.log(totalPrices);
 		
-		//console.log("============>>")
+		//console.log("============>is this it>")
         return totalPrices;
 	};
 
@@ -252,55 +252,9 @@
 					earnings[catMap[product]] += totalPrices[product]
 			}
 			console.log(earnings);
-			console.log("============>>")
+			//console.log("============>>")
 			return earnings;
 	}
-
-
-	/*this.mostProfitableProduct = function(totalPrices){
-
-		//console.log(totalPrices);
-
-		var highest = -1;
-		var p ;
-		for (k in totalPrices) {
-			if (totalPrices[k] > highest) {
-				highest = Number(totalPrices[k]);
-				p = k;
-			}
-		}
-console.log("======>>>>>")
-		console.log( p +":" + highest);
-		
-		var result = {};
-		result[p] = highest;
-		//
-		return result;
-	};
-
-this.mostProfitableCategory = function(catMap){
-
-		//console.log(catMap);
-
-		var max = -1;
-		var c ;
-		for (n in catMap) {
-			if (catMap[n] > max) {
-				max = Number(catMap[n]);
-				c = n;
-			}
-		}
-
-		//console.log( c +":" + max);
-		
-		var result = {};
-		result[c] = max;
-		//
-		//return result;
-	};*/
-
-	
-
 
 };
 

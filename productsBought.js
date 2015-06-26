@@ -17,7 +17,7 @@ module.exports = function(purchacesFile) {
 
 		//console.log("profitLines : " + profitLines.length);
 
-		//var productProfitList = [];
+		var productProfitList = [];
 
 		// ?? this variable name might need to change?
 		var totalCostPerProduct = {};
@@ -47,7 +47,7 @@ module.exports = function(purchacesFile) {
 			}
 		});
 
-		/*
+		
 		for(var key in totalCostPerProduct){
 			var obj = {
 				itemName : key,
@@ -55,9 +55,9 @@ module.exports = function(purchacesFile) {
 			};
 			productProfitList.push(obj);
 		}
-		*/
-		console.log(totalCostPerProduct);
-	return totalCostPerProduct;
+		
+		//console.log(totalCostPerProduct);
+		return totalCostPerProduct;
 	}
 
 
