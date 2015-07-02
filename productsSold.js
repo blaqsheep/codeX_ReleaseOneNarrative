@@ -214,7 +214,7 @@
                     	totalPrices[currentItem] += Number(numberSold) * Number(removeComma);
 						}
 					});
-        			console.log(totalPrices);
+        			//console.log(totalPrices);
 		
 		//console.log("============>is this it>")
         return totalPrices;

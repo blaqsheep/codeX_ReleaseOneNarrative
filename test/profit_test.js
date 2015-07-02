@@ -1,3 +1,4 @@
+
 var assert = require("assert");
 var ProductsBought = require("../profitFile");
 describe("Find data in file", function(){
@@ -27,10 +28,10 @@ describe("Find data in file", function(){
 
 it("should return the most profitable product", function(){
     var products = new ProductsBought('./NelisaPurchases.csv', './Nelisa Sales History.csv');
+    
     var profitPerProduct = products.profitPerProduct();
-
-
     //console.log(profitPerProduct);
+
     console.log("--------------------------------");
 
     var mostProfitableProduct = products.mostProfitableProduct(profitPerProduct);
@@ -39,4 +40,14 @@ it("should return the most profitable product", function(){
     assert.deepEqual(mostProfitableProduct, result)
 });
    
+it("should return the most profitable category", function(){
+    var products = new ProductsBought('./NelisaPurchases.csv', './Nelisa Sales History.csv');
+
+    var mostProfitableCat = products.mostProfitableCat();
+
+    //console.log(mostProfitableCat);
+    var result = {currentItem:"Dairy",numberSold:1245.5};
+    assert.deepEqual(mostProfitableCat, result)
+});
+
 });
