@@ -11,7 +11,7 @@ describe("Find data in file", function(){
         console.log("==========>>")
         //console.log("These are the profits for each product")
 
-        //console.log(productsBought);
+        console.log(productsBought);
 
         console.log("what is productsBought - it's a map")
         assert.equal(18, Object.keys(productsBought).length);

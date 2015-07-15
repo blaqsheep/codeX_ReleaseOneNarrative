@@ -29,6 +29,7 @@ it('should return most popular items', function(){
         var result = {currentItem : 'Mixed Sweets 5s', numberSold:172};
         // did the right thing happen...?!
         assert.deepEqual(popularProduct, result)
+        console.log(popularProduct);
     });
 
 it('should return the least popular item', function(){
@@ -37,9 +38,31 @@ it('should return the least popular item', function(){
     var leastPopular = products.leastPopular();
     var result = {currentItem: 'Valentine Cards', numberSold:14};
     assert.deepEqual(leastPopular, result)
+    console.log(leastPopular);
     });
 
-it('should return the most popular category and the least popular', function(){
+it('should return category list', function(){
+
+    var products = new Products('./Nelisa Sales History.csv');
+    var categoryList = products.numberOfEachCategorySold();
+
+      var expectedResults = [ { currentItem: 'Dairy', numberSold: 267 },
+                              { currentItem: 'Bakery', numberSold: 130 },
+                              { currentItem: 'Canned Food', numberSold: 180 },
+                              { currentItem: 'Cold Beverages', numberSold: 328 },
+                              { currentItem: 'Bulk', numberSold: 47 },
+                              { currentItem: 'Soup', numberSold: 98 },
+                              { currentItem: 'Cosmetics', numberSold: 76 },
+                              { currentItem: 'Fruit', numberSold: 228 },
+                              { currentItem: 'Confectionery', numberSold: 192 },
+                              { currentItem: 'Valentine Goodies', numberSold: 28 } ];
+
+      assert.deepEqual(categoryList, expectedResults);
+      console.log(categoryList);
+
+});
+
+it('should return the most popular category and the least popular category', function(){
     //var Products = require("../productsSold");
     var products = new Products('./Nelisa Sales History.csv');
 
@@ -77,9 +100,11 @@ it('should return the most popular category and the least popular', function(){
           }
 
           var result = {currentItem: 'Cold Beverages', numberSold: 328};
-          var categoryData = products.category(productMap);
+          var categoryData = products.findMostAndLeastPopularCategories(productMap);
           //console.log(categoryData);
           assert.deepEqual(result, categoryData.mostPopularCat);
+          console.log(categoryData.mostPopularCat);
+          console.log(categoryData.leastPopularCat);
 
 })
 
@@ -112,6 +137,7 @@ it('should return earnings per product', function(){
       'Rose (plastic)': 210,
       'Valentine Cards': 56 };
   assert.deepEqual(result, earningPerProduct);
+  console.log(earningPerProduct);
  })
 
 it('should return earnings per category', function(){
@@ -134,6 +160,7 @@ it('should return earnings per category', function(){
 
   }
   assert.deepEqual(result, earningPerCategory);
+  console.log(earningPerCategory);
     })
 
 });
